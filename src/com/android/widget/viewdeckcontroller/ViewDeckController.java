@@ -71,13 +71,12 @@ public class ViewDeckController extends ViewGroup {
 
     private final ArrayList<ItemInfo> mItems = new ArrayList<ItemInfo>();
 
-    private ViewDeckControllerPagerAdapter mAdapter;
-    private int mCurItem;   // Index of currently displayed page.
+    private ViewDeckControllerAdapter mAdapter;
+    private int mCurItem = 1;   // Index of currently displayed page.
     private int mRestoredCurItem = -1;
     private Parcelable mRestoredAdapterState = null;
     private ClassLoader mRestoredClassLoader = null;
     private Scroller mScroller;
-    private DataSetObserver mObserver;
 
     private int mPageMargin;
     private Drawable mMarginDrawable;
@@ -127,7 +126,7 @@ public class ViewDeckController extends ViewGroup {
     private EdgeEffectCompat mLeftEdge;
     private EdgeEffectCompat mRightEdge;
 
-    private boolean mFirstLayout = true;
+    boolean mFirstLayout = true;
 
     private OnPageChangeListener mOnPageChangeListener;
 
@@ -247,9 +246,8 @@ public class ViewDeckController extends ViewGroup {
         }
     }
 
-    public void setAdapter(ViewDeckControllerPagerAdapter adapter) {
+    public void setAdapter(ViewDeckControllerAdapter adapter) {
         if (mAdapter != null) {
-            mAdapter.setDataSetObserver(null);
             mAdapter.startUpdate(this);
             for (int i = 0; i < mItems.size(); i++) {
                 final ItemInfo ii = mItems.get(i);
@@ -265,10 +263,6 @@ public class ViewDeckController extends ViewGroup {
         mAdapter = adapter;
 
         if (mAdapter != null) {
-            if (mObserver == null) {
-                mObserver = new DataSetObserver();
-            }
-            mAdapter.setDataSetObserver(mObserver);
             mPopulatePending = false;
             if (mRestoredCurItem >= 0) {
                 mAdapter.restoreState(mRestoredAdapterState, mRestoredClassLoader);
@@ -282,7 +276,7 @@ public class ViewDeckController extends ViewGroup {
         }
     }
 
-    public ViewDeckControllerPagerAdapter getAdapter() {
+    public ViewDeckControllerAdapter getAdapter() {
         return mAdapter;
     }
 
@@ -344,8 +338,10 @@ public class ViewDeckController extends ViewGroup {
         mCurItem = item;
         populate();
         int destX = (getWidth() + mPageMargin) * item;
-        if (item > 1) {
-        	destX -= 15;
+        if (item < 1) {
+        	destX += 45;
+        } else if (item > 1) {
+        	destX -= 45;
         }
         if (smoothScroll) {
             smoothScrollTo(destX, 0, velocity);
@@ -1706,12 +1702,5 @@ public class ViewDeckController extends ViewGroup {
         }
 
         return false;
-    }
-
-    private class DataSetObserver implements ViewDeckControllerPagerAdapter.DataSetObserver {
-        @Override
-        public void onDataSetChanged() {
-            dataSetChanged();
-        }
     }
 }

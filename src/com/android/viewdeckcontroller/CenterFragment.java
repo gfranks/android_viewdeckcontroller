@@ -14,7 +14,8 @@ public class CenterFragment extends Fragment {
 		View view = inflater.inflate(R.layout.sample, container, false);
 
 	    ((TextView)view.findViewById(R.id.textview)).setText("Center Fragment");
-	    
-		return view;
+	    ((TextView)view.findViewById(R.id.textview)).setTextColor(getResources().getColor(android.R.color.white));
+	    view.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
+	    return view;
 	}
 }

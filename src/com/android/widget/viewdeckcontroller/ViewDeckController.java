@@ -1,9 +1,11 @@
 package com.android.widget.viewdeckcontroller;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.SystemClock;
@@ -23,7 +25,9 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.Interpolator;
+import android.widget.ImageView;
 import android.widget.Scroller;
+import android.widget.RelativeLayout.LayoutParams;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -261,7 +265,7 @@ public class ViewDeckController extends ViewGroup {
         }
 
         mAdapter = adapter;
-
+        
         if (mAdapter != null) {
             mPopulatePending = false;
             if (mRestoredCurItem >= 0) {

@@ -1,37 +1,17 @@
 package com.android.widget.viewdeckcontroller;
 
-import java.util.ArrayList;
-
 import com.android.viewdeckcontroller.CenterFragment;
 import com.android.viewdeckcontroller.LeftFragment;
 import com.android.viewdeckcontroller.RightFragment;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 
 public class ViewDeckControllerAdapter extends FragmentPagerAdapter {
-
-	private ArrayList<Fragment> fragments;
-	private Context mContext;
 	
-	public ViewDeckControllerAdapter(FragmentManager fm, Context context) {
+	public ViewDeckControllerAdapter(FragmentManager fm) {
 		super(fm);
-		mContext = context;
-	}
-
-	public ViewDeckControllerAdapter(FragmentManager fm,
-			ArrayList<Fragment> fragments, Context context) {
-		super(fm);
-		this.fragments = fragments;
-		mContext = context;
-	}
-
-	public void setFragments(ArrayList<Fragment> fragments) {
-		this.fragments = fragments;
 	}
 
 	@Override
@@ -59,6 +39,6 @@ public class ViewDeckControllerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public int getCount() {
-		return fragments.size();
+		return 3;
 	}
 }

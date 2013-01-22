@@ -1,12 +1,9 @@
 package com.android.viewdeckcontroller;
 
-import java.util.ArrayList;
-
 import com.android.widget.viewdeckcontroller.ViewDeckController;
 import com.android.widget.viewdeckcontroller.ViewDeckControllerAdapter;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 
@@ -32,11 +29,7 @@ public class MainFragmentActivity extends FragmentActivity {
 
 	private void setUpView() {
 		mViewDeck = (ViewDeckController) findViewById(R.id.viewdeck);
-		ArrayList<Fragment> fragments = new ArrayList<Fragment>();
-		fragments.add(new LeftFragment());
-		fragments.add(new CenterFragment());
-		fragments.add(new RightFragment());
-		mAdapter = new ViewDeckControllerAdapter(getSupportFragmentManager(), fragments, this);
+		mAdapter = new ViewDeckControllerAdapter(getSupportFragmentManager());
 		mViewDeck.setAdapter(mAdapter);
 	}
 }

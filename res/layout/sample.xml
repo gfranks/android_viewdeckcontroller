@@ -11,5 +11,11 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="@string/hello_world" />
+    
+    <ImageView 
+        android:id="@+id/imageView"
+        android:layout_width="15dip"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"/>
 
 </RelativeLayout>
